@@ -1,0 +1,135 @@
+openapi: 3.0.0
+info:
+  title: Express.js Car API
+  version: 1.0.0
+paths:
+  /cars:
+    get:
+      summary: Get all cars
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/car'
+    post:
+      summary: Create a new car 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/car'
+      responses:
+        '201':
+          description: Car created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '500':
+          description: Internal server error
+  /cars/{id}:
+    get:
+      summary: Get car by id
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/car'
+    put:
+      summary: Update an existing car by id
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/car'
+      responses:
+        '201':
+          description: Car updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '500':
+          description: Internal server error
+    delete:
+      summary: Delete an existing car by id
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Car deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    car:
+      type: object
+      properties:
+        vin:
+          type: string
+        plate_number:
+          type: number
+        state:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        year:
+          type: string
+        owner_name:
+          type: string
+        owner_address:
+          type: string
+        owner_dl_number:
+          type: string
+        problem_description:
+          type: string
+        day_in:
+          type: string
+        day_out:
+          type: string
+        workers:
+          type: array
+          items:
+            type: string
+        shop_location:
+          type: string

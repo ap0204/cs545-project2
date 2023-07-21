@@ -1,0 +1,37 @@
+<definitions name = "MyService"
+             targetNamespace = "http://www.examples.com/wsdl/MyService.wsdl"
+             xmlns = "http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns = "http://www.examples.com/wsdl/MyService.wsdl"
+             xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
+    <message name="PartLookupRequest">
+        <part name="name" type="xsd:string"/>
+    </message>
+    <message name="PartLookupResponse">
+        <part name="part" type="xsd:string"/>
+    </message>
+    <portType name="MyPort">
+        <operation name="PartLookup">
+            <input message="tns:PartLookupRequest"/>
+            <output message="tns:PartLookupResponse"/>
+        </operation>
+    </portType>
+    <binding name = "PartLookup_Binding" type="tns:MyPort">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="PartLookup">
+            <soap:operation soapAction="PartLookup"/>
+            <input>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:examples:MyService" use="encoded"/>
+            </input>
+            <output>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:examples:MyService" use="encoded"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="MyService">
+        <documentation>WSDL File for MyService</documentation>
+        <port binding="tns:PartLookup_Binding" name="MyPort">
+            <soap:address location = "http://soapapp:8000/PartLookup/" />
+        </port>
+    </service>
+</definitions>

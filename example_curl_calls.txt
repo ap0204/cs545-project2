@@ -1,0 +1,55 @@
+This call is for the new SOAP functionality. As with the others, replace "[part]" with the 
+number of your choice (it is hardcoded so the actual number doesn't matter).
+
+curl -X GET --location "http://localhost:3000/order/[part]"
+
+_______________________________________________________________
+
+curl -X GET --location "http://localhost:3000/cars"
+
+curl -X GET --location "http://localhost:3000/cars/[id]"
+
+
+curl -X DELETE --location "http://localhost:3000/cars/[id]" 
+
+curl -X POST --location "http://localhost:3000/cars" \
+-H "Accept: application/json" \
+-H "Content-Type: application/json" \
+-d "{
+\"vin\": \"555552345BHEJSKLR\",
+\"plate_number\": \"BFFF00\",
+\"state\": \"IN\",
+\"make\": \"Dodge\",
+\"model\": \"Challenger\",
+\"year\": \"2005\",
+\"owner_name\": \"Rick Martinez\",
+\"owner_address\": \"555 not-real lane\",
+\"owner_dl_number\": \"111122223333\",
+\"problem_description\": \"customer says alignment needs to be checked.\",
+\"day_in\": \"2019-01-10\",
+\"day_out\": \"2019-01-15\",
+\"workers\": [\"Ashley\", \"Markus\"],
+\"shop_location\": \"Gary, IN\"
+}"
+
+
+curl -X PUT --location "http://localhost:3000/cars/[id]" \
+-H "Accept: application/json" \
+-H "Content-Type: application/json" \
+-d "{
+\"vin\": \"000012345BHEJSKLR\",
+\"plate_number\": \"BL0173\",
+\"state\": \"MA\",
+\"make\": \"HONDA\",
+\"model\": \"Civic\",
+\"year\": \"2016\",
+\"owner_name\": \"James Docker\",
+\"owner_address\": \"99 false avenue\",
+\"owner_dl_number\": \"123456789\",
+\"problem_description\": \"Flat tire.\",
+\"day_in\": \"2015-01-01\",
+\"day_out\": \"2015-01-03\",
+\"workers\": [\"Kenneth\"],
+\"shop_location\": \"Dayton, OH\"
+}"
+
